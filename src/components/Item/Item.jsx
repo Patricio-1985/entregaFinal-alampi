@@ -1,71 +1,51 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import './Item.css';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import "./Item.css";
 
 const Item = ({ product }) => {
-  const navigate = useNavigate();
-  const { cart, addToCart, clearCart } = useContext(CartContext);
-
+  const { addToCart, removeFromCart } = useContext(CartContext);
   const [cantidad, setCantidad] = useState(1);
-  const [maxDisponible, setMaxDisponible] = useState(product.stock);
-
-  useEffect(() => {
-    // Calcula stock restante considerando el carrito
-    const productoEnCarrito = cart.find(p => p.id === product.id);
-    const cantidadEnCarrito = productoEnCarrito ? productoEnCarrito.quantity : 0;
-    setMaxDisponible(product.stock - cantidadEnCarrito);
-
-    if (cantidad > product.stock - cantidadEnCarrito) {
-      setCantidad(product.stock - cantidadEnCarrito > 0 ? product.stock - cantidadEnCarrito : 1);
-    }
-  }, [cart, product.stock]);
-
-  const handleDetalles = () => navigate(`/item/${product.id}`);
-
-  const handleAgregar = () => {
-    if (cantidad > maxDisponible) {
-      alert(`No puedes agregar más de ${maxDisponible} unidades disponibles.`);
-      return;
-    }
-    addToCart(product, cantidad);
-    setCantidad(1);
-  };
 
   const incrementar = () => {
-    if (cantidad < maxDisponible) setCantidad(cantidad + 1);
+    if (cantidad < product.stock) setCantidad(cantidad + 1);
   };
 
   const decrementar = () => {
     if (cantidad > 1) setCantidad(cantidad - 1);
   };
 
+  const handleAgregar = () => {
+    if (cantidad > product.stock) {
+      alert(`No puedes agregar más de ${product.stock} unidades disponibles.`);
+      return;
+    }
+    addToCart(product, cantidad);
+    alert(`${cantidad} unidad(es) de ${product.name} agregada(s) al carrito`);
+    setCantidad(1); // resetea contador
+  };
+
+  const handleVaciar = () => removeFromCart(product.id);
+
   return (
-    <div className="card">
-      {/* Imagen */}
-      <img src={product.image || 'https://via.placeholder.com/150'} alt={product.name} />
-
-      {/* Separador */}
-      <div className="card-separator"></div>
-
-      {/* Datos */}
-      <h3 className="card-title">{product.name}</h3>
+    <div className="item-card">
+      <img src={product.image || "https://via.placeholder.com/250"} alt={product.name} />
+      <h3>{product.name}</h3>
       <p>Precio: ${product.price}</p>
-      <p style={{ fontSize: "0.9rem", color: "#555" }}>Stock disponible: {maxDisponible}</p>
+      <p>Stock: {product.stock}</p>
 
-      {/* Contador */}
       <div className="contador">
         <button onClick={decrementar}>-</button>
-        <span className="cantidad">{cantidad}</span>
+        <span>{cantidad}</span>
         <button onClick={incrementar}>+</button>
       </div>
 
-      {/* Botones */}
       <div className="botones">
-        <button className="btn-detalles" onClick={handleDetalles}>Detalles</button>
-        <button className="btn-agregar" onClick={handleAgregar}>Agregar al carrito</button>
-        <button className="btn-vaciar" onClick={clearCart}>Vaciar Carrito</button>
+        <button className="btn-unico" onClick={handleAgregar}>Agregar</button>
+        <button className="btn-unico" onClick={handleVaciar}>Vaciar</button>
       </div>
+
+      <Link to={`/item/${product.id}`} className="btn-unico btn-detalle">Ver detalle</Link>
     </div>
   );
 };

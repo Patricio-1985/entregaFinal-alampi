@@ -1,33 +1,44 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-import "./ItemDetail.css";
+import "./ItemDetail.css"; // CSS con botones rojos y estilo original
 
-const ItemDetail = ({ product, maxDisponible }) => {
+const ItemDetail = ({ product }) => {
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
-  const [cantidad, setCantidad] = useState(1);
-  const [stock, setStock] = useState(maxDisponible);
+  const { addToCart, getQuantityInCart } = useContext(CartContext);
 
-  // Ajusta el stock si cambia
+  const cantidadEnCarrito = getQuantityInCart(product.id) || 0;
+  const stockDisponible = product.stock - cantidadEnCarrito;
+
+  const [cantidad, setCantidad] = useState(stockDisponible > 0 ? 1 : 0);
+
   useEffect(() => {
-    setStock(maxDisponible);
-    if (cantidad > maxDisponible) setCantidad(maxDisponible > 0 ? maxDisponible : 1);
-  }, [maxDisponible]);
+    if (cantidad > stockDisponible) setCantidad(stockDisponible);
+    if (stockDisponible === 0) setCantidad(0);
+  }, [stockDisponible, cantidad]);
 
   const incrementar = () => {
-    if (cantidad < stock) setCantidad(cantidad + 1);
+    if (cantidad < stockDisponible) setCantidad(cantidad + 1);
   };
+
   const decrementar = () => {
     if (cantidad > 1) setCantidad(cantidad - 1);
   };
+
   const handleAgregar = () => {
-    if (cantidad > stock) {
-      alert(`No puedes agregar más de ${stock} unidades disponibles.`);
+    if (stockDisponible === 0) {
+      alert("Producto sin stock disponible");
       return;
     }
+    if (cantidad > stockDisponible) {
+      alert(`Solo quedan ${stockDisponible} unidad(es) disponibles.`);
+      setCantidad(stockDisponible);
+      return;
+    }
+
     addToCart(product, cantidad);
-    setCantidad(1);
+    alert(`${cantidad} unidad(es) de ${product.name} agregada(s) al carrito`);
+    setCantidad(stockDisponible > 1 ? 1 : 0);
   };
 
   return (
@@ -35,20 +46,29 @@ const ItemDetail = ({ product, maxDisponible }) => {
       <img src={product.image || "https://via.placeholder.com/250"} alt={product.name} />
       <h2>{product.name}</h2>
       <p>Precio: ${product.price}</p>
-      <p style={{ fontSize: "0.9rem", color: "#555" }}>Stock disponible: {stock}</p>
+      <p>Stock disponible: {stockDisponible}</p>
       <p>{product.description || "Más información del producto aquí..."}</p>
 
-      {/* Contador */}
       <div className="contador">
-        <button onClick={decrementar}>-</button>
-        <span className="cantidad">{cantidad}</span>
-        <button onClick={incrementar}>+</button>
+        <button onClick={decrementar} disabled={cantidad <= 1}>-</button>
+        <span>{cantidad}</span>
+        <button onClick={incrementar} disabled={cantidad >= stockDisponible}>+</button>
       </div>
 
-      {/* Botones */}
       <div className="botones">
-        <button className="btn-agregar" onClick={handleAgregar}>Agregar al carrito</button>
-        <button className="btn-volver" onClick={() => navigate(-1)}>Volver</button>
+        <button
+          className="btn-agregar"
+          onClick={handleAgregar}
+          disabled={stockDisponible === 0}
+        >
+          {stockDisponible === 0 ? "Sin stock" : "Agregar al carrito"}
+        </button>
+        <button
+          className="btn-volver"
+          onClick={() => navigate(-1)}
+        >
+          Volver
+        </button>
       </div>
     </div>
   );

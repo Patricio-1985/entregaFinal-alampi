@@ -1,102 +1,114 @@
-.card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
+/* Contenedor general de las cards */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+  justify-items: center;
+  background-color: #010201; /* azul muy oscuro, casi negro */
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.cards-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Card individual */
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e2e2e2; /*  card */
+  color: #0a0202;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 220px;
+  max-width: 280px; /* asegura tamaño uniforme */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+/* Imagen */
+.item-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+/* Título y texto */
+.item-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  background-color: #f5f5f5;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.card-title {
-  margin: 10px 0;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-.card p {
-  color: #555;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-/* Stock */
-.stock {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 10px;
+.item-card p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Contador */
 .contador {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .contador button {
-  padding: 5px 10px;
-  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  background-color: #d33f49;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.contador .cantidad {
-  width: 40px;           /* ancho fijo */
-  text-align: center;    /* centrado del número */
-  font-size: 1rem;
+.contador span {
+  min-width: 25px;
+  text-align: center;
   font-weight: bold;
+  color: #000;
 }
 
 /* Botones */
 .botones {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-.btn-detalles {
-  background-color: #6b9640;
-}
-
-.btn-detalles:hover {
-  background-color: #5a7c34;
-}
-
-.btn-agregar {
-  background-color: #888;
-}
-
-.btn-agregar:hover {
-  background-color: #666;
-}
-
-.btn-vaciar {
+.btn-unico {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
   background-color: #d33f49;
+  color: #fff;
+  transition: background-color 0.3s;
 }
 
-.btn-vaciar:hover {
-  background-color: #b7303e;
+.btn-unico:hover {
+  background-color: #b22a35;
 }
-/* Separador dentro de la card */
-.card .card-separator {
-  width: 80%;          /* ancho de la línea */
-  height: 3px;         /* más gruesa para que se vea */
-  background-color: #000; /* negro fuerte */
-  margin: 15px auto;   /* espacio arriba y abajo, centrado */
-  border-radius: 2px;  /* redondeado leve */
+
+.btn-detalle {
+  margin-top: 0.3rem;
+  width: 100%;
 }

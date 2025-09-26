@@ -1,80 +1,71 @@
 .item-detail {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: center;
-  background-color: #f5f5f5;
+  background-color: #6b9640; /* verde original */
+  padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: #fff;
+  max-width: 400px;
+  margin: 1rem auto;
+  text-align: center;
 }
 
 .item-detail img {
   width: 100%;
-  max-width: 300px;
+  height: auto;
   border-radius: 10px;
-  margin-bottom: 15px;
 }
 
 .item-detail h2 {
-  margin-bottom: 10px;
-  color: #333;
+  margin: 0.5rem 0;
 }
 
 .item-detail p {
-  margin: 5px 0;
-  color: #555;
+  margin: 0.3rem 0;
 }
 
-/* Contador */
 .contador {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin: 10px 0 20px;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
 .contador button {
-  padding: 5px 10px;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff; /* botones rojos */
+  color: #0a0a0a;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
 }
 
-.contador .cantidad {
-  width: 40px;
-  text-align: center;
-  font-weight: bold;
+.contador button:disabled {
+  background-color: #3d3c3c;
+  cursor: not-allowed;
 }
 
-/* Botones */
+.contador span {
+  font-weight: bold;
+  color: #000000;
+}
+
 .botones {
   display: flex;
-  gap: 10px;
   justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
-.btn-agregar {
-  background-color: #888;
-  color: #fff;
+.btn-agregar, .btn-volver {
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  padding: 8px 15px;
+  background-color: #d33f49; /* mantiene rojo */
+  color: #fff;
   cursor: pointer;
 }
 
-.btn-agregar:hover {
-  background-color: #666;
-}
-
-.btn-volver {
-  background-color: #6b9640;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  cursor: pointer;
-}
-
-.btn-volver:hover {
-  background-color: #5a7c34;
+.btn-agregar:disabled {
+  background-color: #999;
+  cursor: not-allowed;
 }

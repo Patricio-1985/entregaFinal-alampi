@@ -9,16 +9,13 @@ const NavBar = () => {
       <div className="logo">🎸 Cara de Perro</div>
       <ul className="menu">
         <li><Link to="/">Inicio</Link></li>
-        <li><Link to="/catalogo">Catálogo</Link></li>
+        <li><Link to="/catalogos">Catálogo</Link></li>
         <li><Link to="/categorias">Categorías</Link></li>
-        <li><Link to="/carrito">Carrito </Link></li>
+        <li><Link to="/cart">Carrito</Link></li>
       </ul>
-        <CartWidget />
+      <CartWidget />
     </nav>
   );
 };
 
 export default NavBar;
-
-
-

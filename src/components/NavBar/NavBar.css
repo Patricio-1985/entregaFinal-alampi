@@ -1,54 +1,60 @@
 .navbar {
   display: flex;
-  justify-content: center; 
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #000;
-  border-bottom: 3px solid #d33f49;
-  font-family: 'Arial Black', sans-serif;}
+  background-color: #6b9640;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  position: relative;
+}
 
 .navbar .logo {
-  color: #d33f49;
   font-size: 1.5rem;
   font-weight: bold;
-  text-transform: uppercase;
-  margin-right: 2rem; }
+}
 
 .navbar .menu {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
+
 .navbar .menu li a {
-  color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  color: #fff;
+  font-weight: 500;
 }
 
 .navbar .menu li a:hover {
-  color: #ff1a1a;
+  color: #ffdd57;
 }
 
-.navbar .cart-widget {
-  position: relative;
-}
-
-.navbar .cart-widget a {
+/* Loader de categorías */
+.loading-categories {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-style: italic;
   color: #fff;
-  font-size: 1.5rem;
-  text-decoration: none;
 }
 
-.navbar .cart-widget span {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #d33f49;
-  color: #fff;
+/* Spinner circular */
+.loading-categories::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-top: 2px solid #ffdd57;
   border-radius: 50%;
-  padding: 0 6px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

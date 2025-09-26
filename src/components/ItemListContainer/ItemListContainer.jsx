@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Item from "../Item/Item";
-import "../../styles/cards.css"; // Aquí están los estilos de las cards y el grid
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -27,7 +26,7 @@ const ItemListContainer = () => {
   return (
     <div className="cards-container">
       {products.length === 0 ? (
-        <p>Cargando productos...</p>
+        <p className="loading-text">Cargando productos...</p>
       ) : (
         products.map(product => <Item key={product.id} product={product} />)
       )}

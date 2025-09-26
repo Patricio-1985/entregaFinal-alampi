@@ -12,11 +12,57 @@ const ItemCount = ({ stock, initial = 1, onAdd }) => {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "1rem", justifyContent: "center", marginTop: "1rem" }}>
-      <button onClick={decrement} style={{ padding: "0.5rem 1rem", backgroundColor: "#d33f49", color: "#fff", border: "none", borderRadius: "5px" }}>-</button>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "1rem",
+        justifyContent: "center",
+        marginTop: "1rem",
+      }}
+    >
+      <button
+        onClick={decrement}
+        disabled={quantity <= 1} // Bloquea si llega al mínimo
+        style={{
+          padding: "0.5rem 1rem",
+          backgroundColor: "#d33f49",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+        }}
+      >
+        -
+      </button>
+
       <span style={{ color: "#fff", fontWeight: "bold" }}>{quantity}</span>
-      <button onClick={increment} style={{ padding: "0.5rem 1rem", backgroundColor: "#d33f49", color: "#fff", border: "none", borderRadius: "5px" }}>+</button>
-      <button onClick={() => onAdd(quantity)} style={{ padding: "0.5rem 1rem", backgroundColor: "#ff1a1a", color: "#fff", border: "none", borderRadius: "5px", marginLeft: "1rem" }}>
+
+      <button
+        onClick={increment}
+        disabled={quantity >= stock} // Bloquea si llega al stock
+        style={{
+          padding: "0.5rem 1rem",
+          backgroundColor: "#d33f49",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+        }}
+      >
+        +
+      </button>
+
+      <button
+        onClick={() => onAdd(quantity)}
+        disabled={stock === 0} // Bloquea si no hay stock
+        style={{
+          padding: "0.5rem 1rem",
+          backgroundColor: "#ff1a1a",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          marginLeft: "1rem",
+        }}
+      >
         Agregar al carrito
       </button>
     </div>
