@@ -1,38 +1,31 @@
-.App {
+body {
+  margin: 0;
+  font-family: 'Arial Black', sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+
+/* Banner de bienvenida */
+.welcome-banner {
   text-align: center;
+  padding: 4rem 2rem;
+  background-color: #000;
+  border: 3px solid #d33f49; /* Borde rojo rockero */
+  margin: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #d33f49; /* glow rojo */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Título principal */
+.welcome-title {
+  font-size: 2.5rem;
+  color: #d33f49;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 5px #ff1a1a;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Subtítulo */
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #fff;
 }

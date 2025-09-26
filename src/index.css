@@ -1,13 +1,40 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Arial Black', sans-serif;
+  background-color: #111;
+  color: #fff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Fondo general de la página */
+body {
+  background-color: #000; /* negro */
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
+
+/* Contenedor de las cards centrado */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 12px; /* más juntas */
+  justify-content: center; /* centra las columnas */
+  padding: 20px;
+  margin: 0 auto; /* centra el contenedor completo */
+  max-width: 1200px; /* limita ancho total */
+}
+
+/* Card */
+.card {
+  background-color: #f5f5f5; /* gris claro */
+  border: 4px solid #000; /* marco más grueso y negro */
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Resto de estilos de las cards y botones... */

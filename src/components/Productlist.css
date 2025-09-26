@@ -1,0 +1,47 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  background-color: #1d031e; /* Fondo oscuro */
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #2b0b2b; /* Card oscuro */
+  border: 2px solid #d33f49; /* Borde rojo rockero */
+  border-radius: 12px;
+  padding: 15px;
+  width: 200px;
+  color: #fff;
+  text-align: center;
+  font-family: 'Arial Black', sans-serif;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.product-price {
+  color: #6b9640; /* Verde principal */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-stock {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.product-category {
+  font-style: italic;
+  color: #d33f49; /* rojo secundario */
+}
